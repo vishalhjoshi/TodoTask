@@ -1,77 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { ToDoUserSchema } from './ValidationSchema'
 import { Field, FieldArray, Formik } from 'formik';
+import {data} from './__data'
 
 
 const DataCrud = () => {
     const [dataList, setDataList] = useState([]);
-    let data = [
-        {
-          id: 1,
-          name: "girish chaudhari",
-          email: "girish@gmail.com",
-          mobile: "9021929562",
-          project: "otm",
-          task: "admin panel",
-          status: "progress",
-          start_time: "20/02/22",
-          end_time: "04/03/22",
-        },
-        {
-          id: 2,
-          name: "vinay chaudhari",
-          email: "vinay@gmail.com",
-          mobile: "9021929562",
-          project: "otm-react",
-          task: "admin panel",
-          status: "done",
-          start_time: "20/02/22",
-          end_time: "04/03/22",
-        },
-        {
-          id: 3,
-          name: "girish chaudhari",
-          email: "girish@gmail.com",
-          mobile: "9021929562",
-          project: "otm-admin-panel",
-          task: "admin panel",
-          status: "planned",
-          start_time: "20/02/22",
-          end_time: "04/03/22",
-        },
-        {
-          id: 4,
-          name: "sunil chaudhari",
-          email: "sunil@gmail.com",
-          mobile: "9021929562",
-          project: "otm-vendor",
-          task: "admin panel",
-          status: "planned",
-          start_time: "20/02/22",
-          end_time: "04/03/22",
-        },
-      ];
       function fetchData() {
-        //   listData = data;
         setDataList(data);
       }
       const handleUpdate = (id) =>{
         console.log(id)
         console.log("id with data", dataList[id])
       }
-      const handleDelete = (id) =>{
-        for (let i = 0; i < data.length; i++) {
-            let dataItem = data[i];
-            if (dataItem.id == id) {
-              data.splice(i, 1);
-            }
-          }
 
-        console.log(id)
-        data.splice(id, 1)
-        console.log(dataList)
-        fetchData()
-      }
+    //   const handleDelete = (e) => {
+    //     const name = e.target.getAttribute("name")
+    //     setDataList(dataList.filter(item => item.name !== name));
+    //    };
+     
+     const handleDelete = (id) =>{
+        setDataList(dataList.filter(item => item.id !== id));
+        // console.log(dataList)
+    }
 
     const handleFormSubmit = (values) => {
         console.log("values ==>", values);
@@ -290,6 +241,7 @@ const DataCrud = () => {
                                             Edit
                                         </button>
                                         <button
+                                            name={item.name}
                                             className="btn danger"
                                             onClick={() => handleDelete(item.id)}
                                         >
