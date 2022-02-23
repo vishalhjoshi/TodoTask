@@ -11,6 +11,7 @@ function App() {
         <DataCrud />
       </div>
       <div className="footer"></div>
+      console.log("test data for commit.");
     </div>
   );
 }
